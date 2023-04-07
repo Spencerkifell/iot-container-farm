@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:views="clr-namespace:BSV_IOT_FARM.Views;assembly=BSV_IOT_FARM"
+             x:Class="BSV_IOT_FARM.Views.ContainerHubPage"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             NavigationPage.HasNavigationBar="False">
+    <NavigationPage Title="Plant" IconImageSource="plant.png">
+        <x:Arguments>
+            <views:PlantMeasurements/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="GPS" IconImageSource="pin.png"> 
+        <x:Arguments>
+            <views:GeoLocationMeasurements />
+        </x:Arguments>
+    </NavigationPage>
+    
+    <NavigationPage Title="Security" IconImageSource="security.png">
+        <x:Arguments>
+            <views:SecurityMeasurements/>
+        </x:Arguments>
+    </NavigationPage>
+    
+    <NavigationPage Title="Charts" IconImageSource="chart.png">
+        <x:Arguments>
+            <views:ChartPage/>
+        </x:Arguments>
+    </NavigationPage>
+</TabbedPage>

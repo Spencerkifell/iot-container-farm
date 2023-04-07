@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="BSV_IOT_FARM.Views.ContainerFormPage"
+             NavigationPage.HasBackButton="False"
+             Title="Add New Container Farm">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Command="{Binding  ReturnCommand}"/>
+        <ToolbarItem Text="Save" Command="{Binding SaveFormCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <TableView HasUnevenRows="True" BindingContext="{Binding FormContainerFarm}">
+                <TableRoot>
+                    <TableSection Title="Container Farm Details">
+                        <ViewCell>
+                            <StackLayout Margin="15,5">
+                                <Label Text="Name"/>
+                                <Entry Keyboard="Text" Text="{Binding Name}">
+                                    <Entry.Behaviors>
+                                        <xct:TextValidationBehavior MinimumLength="1" IsNotValid="{Binding IsNameInvalid}" Flags="ValidateOnAttaching, ValidateOnValueChanging"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                                <Label TextColor="Red" Text="Name is Required" IsVisible="{Binding IsNameInvalid}"/>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Margin="15, 5">
+                                <Label Text="Description"/>
+                                <Entry Keyboard="Text" Text="{Binding Description}">
+                                    <Entry.Behaviors>
+                                        <xct:TextValidationBehavior MinimumLength="1" IsNotValid="{Binding IsDescriptionInvalid}" Flags="ValidateOnAttaching, ValidateOnValueChanging"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                                <Label TextColor="Red" Text="Description is Required" IsVisible="{Binding IsDescriptionInvalid}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection Title="Azure Event Hub Credentials">
+                        <ViewCell>
+                            <StackLayout Margin="15, 5">
+                                <Label Text="Event Hub Compatible Name"/>
+                                <Entry Keyboard="Text" Text="{Binding EventHubName}">
+                                    <Entry.Behaviors>
+                                        <xct:TextValidationBehavior MinimumLength="1" IsNotValid="{Binding IsEventHubNameInvalid}" Flags="ValidateOnAttaching, ValidateOnValueChanging"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                                <Label TextColor="Red" Text="Event Hub Name is Required" IsVisible="{Binding IsEventHubNameInvalid}"/>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Margin="15,5">
+                                <Label Text="Event Hub Compatible Endpoint"/>
+                                <Entry Keyboard="Text" Text="{Binding EventHubConnectionString}">
+                                    <Entry.Behaviors>
+                                        <xct:TextValidationBehavior MinimumLength="1" IsNotValid="{Binding IsEventHubConnectionStringInvalid}" Flags="ValidateOnAttaching, ValidateOnValueChanging"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                                <Label TextColor="Red" Text="Event Hub Connection String is Required" IsVisible="{Binding IsEventHubConnectionStringInvalid}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection Title="Azure Device Credentials">
+                        <ViewCell>
+                            <StackLayout Margin="15,5">
+                                <Label Text="Device ID"/>
+                                <Entry Keyboard="Text" Text="{Binding DeviceId}">
+                                    <Entry.Behaviors>
+                                        <xct:TextValidationBehavior MinimumLength="1" IsNotValid="{Binding IsDeviceIdInvalid}" Flags="ValidateOnAttaching, ValidateOnValueChanging"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                                <Label TextColor="Red" Text="Device ID is Required" IsVisible="{Binding IsDeviceIdInvalid}"/>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Margin="15,5">
+                                <Label Text="Iot Hub Connection String"/>
+                                <Entry Keyboard="Text" Text="{Binding IotHubConnectionString}">
+                                    <Entry.Behaviors>
+                                        <xct:TextValidationBehavior MinimumLength="1" IsNotValid="{Binding IsIotHubConnectionStringInvalid}" Flags="ValidateOnAttaching, ValidateOnValueChanging"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                                <Label TextColor="Red" Text="IoT Hub Connection String is Required" IsVisible="{Binding IsIotHubConnectionStringInvalid}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

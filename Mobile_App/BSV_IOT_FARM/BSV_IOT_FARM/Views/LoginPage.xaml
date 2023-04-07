@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="BSV_IOT_FARM.Views.LoginPage"
+             NavigationPage.HasBackButton="False"
+             Title="BSV Container Farms">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Frame Padding="40" Margin="15" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds=".5,.5,1,1">
+                <StackLayout>
+                    <Image Source="login.png" HeightRequest="50" Margin="0,0,0,20"/>
+                    <Label Text="LOGIN" FontSize="25" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,15"/>
+                    
+                    <Label Text="Username"/>
+                    <StackLayout Margin="0,0,0,10">
+                        <Frame BackgroundColor="WhiteSmoke" Padding="2">
+                            <Entry Text="{Binding Username}">
+                                <Entry.Behaviors>
+                                    <xct:TextValidationBehavior MinimumLength="1" IsNotValid="{Binding IsUsernameInvalid}" Flags="ValidateOnAttaching, ValidateOnValueChanging"/>
+                                </Entry.Behaviors>
+                            </Entry>
+                        </Frame>
+                        <Label TextColor="Red" Text="Username is Required" IsVisible="{Binding IsUsernameInvalid}"/>
+                    </StackLayout>
+
+                    <Label Text="Password" />
+                    <StackLayout Margin="0,0,0,10">
+                        <Frame BackgroundColor="WhiteSmoke" Padding="2">
+                            <Entry IsPassword="True" Text="{Binding Password}">
+                                <Entry.Behaviors>
+                                    <xct:TextValidationBehavior MinimumLength="1" IsNotValid="{Binding IsPasswordInvalid}" Flags="ValidateOnAttaching, ValidateOnValueChanging"/>
+                                </Entry.Behaviors>
+                            </Entry>
+                        </Frame>
+                        <Label TextColor="Red" Text="Password is Required" IsVisible="{Binding IsPasswordInvalid}"/>
+                    </StackLayout>
+
+                    <Button Text="Sign In" Command="{Binding LoginCommand}" 
+                            TextColor="DimGray"
+                            WidthRequest="125" 
+                            HorizontalOptions="Center"
+                            BackgroundColor="LightSkyBlue"
+                            Margin="0,25,0,0"/>
+                    
+                    <Label Text="Don't have an account? Sign Up!" HorizontalTextAlignment="Center" Margin="0,20,0,0" TextColor="CornflowerBlue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenRegisterCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </Frame>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

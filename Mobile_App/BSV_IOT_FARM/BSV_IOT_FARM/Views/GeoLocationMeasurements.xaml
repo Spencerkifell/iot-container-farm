@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="BSV_IOT_FARM.Views.GeoLocationMeasurements"
+             Title="Geo Location">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Farms" Command="{Binding ReturnCommand}" IconImageSource="silo.png"/>
+        <ToolbarItem Text="Controls" Clicked="Controls_Clicked" IconImageSource="control.png"/>
+        <ToolbarItem Text="Refresh" Command="{Binding FetchTelemetryDataCommand}" IconImageSource="refresh.png"/>
+        <ToolbarItem Text="Interval" Command="{Binding ModifyIntervalCommand}" IconImageSource="clock.png"/>
+
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+            <RefreshView IsRefreshing="{Binding IsBusy}" Command="{Binding RefreshTelemetryCommand}">
+                <ScrollView Margin="10">
+                    <Grid x:Name="TelemetryGrid" Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Frame CornerRadius="10" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                               xct:TouchEffect.LongPressCommand="{Binding GenerateMapCommand}"
+                               xct:TouchEffect.LongPressDuration="2000">
+                            <StackLayout>
+                                <Label Text="Longitude / Latitude" HorizontalTextAlignment="Center" FontSize="Medium"/>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                    <Label Text="{Binding SelectedContainerFarm.Telemetry.Longitude, TargetNullValue='Unavailable', StringFormat='{0},'}" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="Large"/>
+                                    <Label Text="{Binding SelectedContainerFarm.Telemetry.Latitude, TargetNullValue='Unavailable'}" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="Large"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                        
+                        <Frame CornerRadius="10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                            <StackLayout>
+                                <Label Text="Vibration" HorizontalTextAlignment="Center" FontSize="Medium"/>
+                                <Label Text="{Binding SelectedContainerFarm.Telemetry.Vibration, TargetNullValue='Unavailable'}" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="Large"/>
+                            </StackLayout>
+                        </Frame>
+                        
+                        <Frame CornerRadius="10" Grid.Row="2" Grid.Column="0"> 
+                            <StackLayout>
+                                <Label Text="Pitch" HorizontalTextAlignment="Center" FontSize="Medium"/>
+                            <Label Text="{Binding SelectedContainerFarm.Telemetry.Pitch, TargetNullValue='Unavailable', StringFormat='{0:0.00}'}" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="Large"/>
+                            </StackLayout>
+                        </Frame>
+                        
+                        <Frame CornerRadius="10" Grid.Row="2" Grid.Column="1">
+                            <StackLayout>
+                                <Label Text="Roll" HorizontalTextAlignment="Center" FontSize="Medium"/>
+                            <Label Text="{Binding SelectedContainerFarm.Telemetry.Roll, TargetNullValue='Unavailable', StringFormat='{0:0.00}'}" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="Large"/>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ScrollView>
+            </RefreshView>
+        </ContentPage.Content>
+</ContentPage>

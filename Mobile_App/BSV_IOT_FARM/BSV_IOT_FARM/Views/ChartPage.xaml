@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BSV_IOT_FARM.Views.ChartPage"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             Title="Charts">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Farms" Command="{Binding ReturnCommand}" IconImageSource="silo.png"/>
+        <ToolbarItem Text="Amount" Command="{Binding SetAmountOfDataPointsCommand}" IconImageSource="graph.png"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame>
+                <StackLayout>
+                <Picker SelectedIndex="0" x:Name="PropertyPicker" Title="Select Property to Chart" Margin="10" HorizontalTextAlignment="Center">
+                <Picker.Behaviors>
+                    <xct:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding GetPropertyGraphCommand}" CommandParameter="{Reference PropertyPicker}"/>
+                </Picker.Behaviors>
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Longitude</x:String>
+                        <x:String>Latitude</x:String>
+                        <x:String>Pitch</x:String>
+                        <x:String>Roll</x:String>
+                        <x:String>Temperature</x:String>
+                        <x:String>Humidity</x:String>
+                        <x:String>Moisture</x:String>
+                        <x:String>WaterLevel</x:String>
+                        <x:String>Noise</x:String>
+                        <x:String>Luminosity</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <Label Text="{Binding ChartTitle}" HorizontalOptions="Center" FontSize="30"/>  
+                </StackLayout>
+            </Frame>
+            <microcharts:ChartView Chart="{Binding Chart}" x:Name="chartView" HeightRequest="300" VerticalOptions="FillAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

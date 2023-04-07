@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BSV_IOT_FARM.Views.MapPage"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             Title="Current Location">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame VerticalOptions="FillAndExpand">
+                <maps:Map ItemsSource="{Binding Locations}" x:Name="CurrentMap">
+                    <maps:Map.ItemTemplate>
+                        <DataTemplate>
+                            <maps:Pin Position="{Binding Position}"
+                                      Address=""
+                                      Label="Current Location"
+                                      x:Name="Pin"/>
+                        </DataTemplate>
+                    </maps:Map.ItemTemplate>
+                </maps:Map>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

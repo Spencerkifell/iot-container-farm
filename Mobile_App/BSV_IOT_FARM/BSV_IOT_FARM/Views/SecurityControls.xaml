@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BSV_IOT_FARM.Views.SecurityControls"
+             Title="Security Controls">
+    <ContentPage.Content>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Frame Grid.Column="0" CornerRadius="20" BorderColor="Black">
+                <StackLayout>
+                    <Label Text="Lock" HorizontalTextAlignment="Center" FontSize="Medium"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Switch x:Name="door" IsToggled="{Binding DoorIsLocked}" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <Frame Grid.Column="1" CornerRadius="20" BorderColor="Black">
+                <StackLayout>
+                    <Label Text="Buzzer" HorizontalTextAlignment="Center" FontSize="Medium"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Switch x:Name="buzzer" IsToggled="{Binding BuzzerIsOn}" HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

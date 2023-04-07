@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BSV_IOT_FARM.Views.SecurityMeasurements"
+             Title="Security">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Farms" Command="{Binding ReturnCommand}" IconImageSource="silo.png"/>
+        <ToolbarItem Text="Controls" Clicked="Controls_Clicked" IconImageSource="control.png"/>
+        <ToolbarItem Text="Refresh" Command="{Binding FetchTelemetryDataCommand}" IconImageSource="refresh.png"/>
+        <ToolbarItem Text="Interval" Command="{Binding ModifyIntervalCommand}" IconImageSource="clock.png"/>
+
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <RefreshView IsRefreshing="{Binding IsBusy}" Command="{Binding RefreshTelemetryCommand}">
+            <ScrollView Margin="10">
+                <StackLayout BindingContext="{Binding SelectedContainerFarm.Telemetry}" Margin="10">
+                    <Frame CornerRadius="5">
+                        <StackLayout>
+                            <Label Text="Noise" HorizontalTextAlignment="Center" FontSize="Medium"/>
+                            <Label Text="{Binding Noise, TargetNullValue='Unavailable'}" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="Large"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame CornerRadius="10">
+                        <StackLayout>
+                            <Label Text="Luminosity" HorizontalTextAlignment="Center" FontSize="Medium"/>
+                            <Label Text="{Binding Luminosity, TargetNullValue='Unavailable'}" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="Large"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame CornerRadius="10">
+                        <StackLayout>
+                            <Label Text="Motion" HorizontalTextAlignment="Center" FontSize="Medium"/>
+                            <Label Text="{Binding Motion, TargetNullValue='Unavailable'}" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="Large"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame CornerRadius="10">
+                        <StackLayout>
+                            <Label Text="Door" HorizontalTextAlignment="Center" FontSize="Medium"/>
+                            <Label Text="{Binding Door, TargetNullValue='Unavailable'}" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="Large"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

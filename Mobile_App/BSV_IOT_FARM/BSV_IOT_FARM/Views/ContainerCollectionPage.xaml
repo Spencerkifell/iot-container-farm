@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BSV_IOT_FARM.Views.ContainerCollectionPage"
+             Title="Container Farms"
+             NavigationPage.HasBackButton="False">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Profile" IconImageSource="login.png" Command="{Binding DisplayProfileCommand}"/>
+        <ToolbarItem Text="Logout" IconImageSource="logout1.png" Command="{Binding LogoutCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <CollectionView x:Name="CollectionView"
+                            ItemsSource="{Binding ContainerFarms}"
+                            EmptyView="No Container Farms Available"
+                            Margin="20"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding SelectedContainerFarm}"
+                            SelectionChangedCommand="{Binding SelectionChangedCommand}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout VerticalItemSpacing="10" Orientation="Vertical" Span="1"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItem  BackgroundColor="Red" IconImageSource="delete.png"
+                                            Command="{Binding BindingContext.DeleteContainerFarmCommand, Source={x:Reference CollectionView}}"
+                                            CommandParameter="{Binding .}"
+                                            IsVisible="{Binding BindingContext.CurrentUser.IsFleetManager, Source={x:Reference CollectionView}}"/>
+                            </SwipeView.RightItems>
+                            <SwipeView.LeftItems>
+                                <SwipeItem BackgroundColor="Orange" IconImageSource="pencil.png"
+                                           Command="{Binding BindingContext.EditContainerFarmCommand, Source={x:Reference CollectionView}}"
+                                           CommandParameter="{Binding .}"
+                                           IsVisible="{Binding BindingContext.CurrentUser.IsFleetManager, Source={x:Reference CollectionView}}"/>
+                            </SwipeView.LeftItems>
+                            <Frame BorderColor="Black" CornerRadius="5">
+                                <StackLayout>
+                                    <Label Text="{Binding Name }" HorizontalTextAlignment="Center" FontAttributes="Bold" LineBreakMode="TailTruncation"/>
+                                    <Label Text="{Binding Description}" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
+                                </StackLayout>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <ImageButton IsVisible="{Binding CurrentUser.IsFleetManager}"
+                         Margin="10" 
+                         Source="add.png" 
+                         BackgroundColor="Transparent" 
+                         Command="{Binding AddContainerFarmCommand}" 
+                         AbsoluteLayout.LayoutBounds="1,1,0.2,0.12" AbsoluteLayout.LayoutFlags="All"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

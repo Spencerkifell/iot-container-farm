@@ -1,0 +1,10 @@
+Hardware Ports:
+______________
+
+Door Sensor: D22
+
+Motion Sensor: D24
+
+Noise Sensor: A2
+
+Door lock: PWM

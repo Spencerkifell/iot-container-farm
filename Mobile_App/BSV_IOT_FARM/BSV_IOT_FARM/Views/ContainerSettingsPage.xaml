@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BSV_IOT_FARM.Views.ContainerSettingsPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" IconImageSource="adduser.png" Command="{Binding AddUserToContainerFarmCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <CollectionView x:Name="CollectionView"
+                            ItemsSource="{Binding EditedContainerFarm.Users}"
+                            EmptyView="No Users Exist within Container Farm"
+                            Margin="20"
+                            SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout VerticalItemSpacing="10" Orientation="Vertical" Span="1"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Black" CornerRadius="5">
+                            <StackLayout>
+                                <Label Text="{Binding Username}" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                                <Label Text="{Binding RoleString}" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
